@@ -1,0 +1,2 @@
+/home/mtah/scripts/dzen | dzen2 -ta r -fg 'grey70' -p -e '' &
+#ssh hager@eris.ctk.se "tail -f ~/.irssi_pipe" | dzen2 -l 6 -tw 300

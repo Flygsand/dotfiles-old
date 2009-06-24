@@ -1,0 +1,49 @@
+use_xft yes
+xftfont verdana:size=8
+alignment top_left
+xftalpha 0.8
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+draw_shades no
+draw_outline no
+draw_borders no
+stippled_borders 10
+border_margin 4
+border_width 1
+default_shade_color grey
+default_outline_color black
+default_color ffffff
+use_spacer none
+no_buffers yes
+uppercase no
+color1 ffffff
+gap_x 15
+gap_y 15
+
+
+
+TEXT
+${color ffffff}${font weather:size=82}${execi 600 ~/scripts/conditions}${color}${font}${voffset -25}  ${execi 1200 ~/scripts/pogodynka}
+
+${font weather:size=28}x ${font}HDD ${execi 1 ~/scripts/hddmonit} °C
+
+${font PizzaDude Bullets:size=16}v${font}   Up: ${upspeed eth1} Kb/s
+${font PizzaDude Bullets:size=16}r${font}   Down: ${downspeed eth1} Kb/s 
+
+${font PizzaDude Bullets:size=16}M${font}   Upload: ${totalup eth1}
+${font PizzaDude Bullets:size=16}S${font}   Download: ${totaldown eth1}
+
+${color ffffff}${font StyleBats:size=16}A${font}  CPU0: ${cpu cpu0}% ${cpubar cpu0}
+${font StyleBats:size=16}A${font}  CPU1: ${cpu cpu1}% ${cpubar cpu1}
+
+${color ffffff}${font FreeSans:size=16}@${font}${execpi 300 python ~/scripts/gmail_parser.py martin.haeger 55605df3 5}
+
+${color ffffff}${font PizzaDude Bullets:size=16}J${font}   $mem / $memmax
+
+${font StyleBats:size=18}P${font}  Work:  ${uptime_short}
+
+${if_running rhythmbox}${color3}${execibar 1 conkyRhythmbox --datatype=PP}
+${execp conkyRhythmbox --template=/usr/share/conkyrhythmbox/example/conkyRhythmbox.template -n}${endif}
