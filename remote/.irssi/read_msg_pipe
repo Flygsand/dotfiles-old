@@ -1,0 +1,13 @@
+#!/bin/sh
+PIPE=~/.irssi/msg_pipe
+
+if [ ! -e $PIPE ]
+then
+  mkfifo $PIPE
+fi
+
+while true
+do
+  read line < $PIPE
+  echo $line
+done

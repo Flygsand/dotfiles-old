@@ -1,0 +1,8 @@
+#!/bin/sh
+ssh hager@eris.ctk.se "~/.irssi/read_msg_pipe" |
+while read line
+do
+ heading=${line%% *}
+ message=${line#* }
+ notify-send "$heading" "$message"
+done
