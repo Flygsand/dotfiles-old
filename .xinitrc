@@ -1,16 +1,37 @@
-export OOO_FORCE_DESKTOP=gnome
-xrdb -merge /home/mtah/.Xresources
+#!/bin/sh
 
-# .Xmodmap remaps Caps Lock to Esc (for Vim)
-if [ -f /home/mtah/.Xmodmap ]; then
-  xmodmap /home/mtah/.Xmodmap
-fi
+__gnome_init() {
+  gnome-screensaver &
+  gnome-settings-daemon &
+  gnome-volume-manager &  
+}
 
-firefox&
-piding&
-gvim&
-urxvt&
+case $1 in
+awesome)
+	__gnome_init
+	exec awesome
+	;;
 
-env WINEPREFIX="/home/mtah/.wine" wine "C:\Program Files\Spotify\spotify.exe"&
+dwm)	
+	__gnome_init
+	exec dwm
+	;;
 
-dbus-launch --sh-syntax --exit-with-session /usr/bin/xmonad
+gnome)
+	exec gnome-session
+	;;
+
+i3)	
+	__gnome_init
+	exec i3
+	;;
+
+wmii)	
+	__gnome_init
+	exec wmii
+	;;
+*)
+	__gnome_init
+	exec wmii
+	;;
+esac
