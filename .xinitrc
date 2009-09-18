@@ -9,12 +9,12 @@ __gnome_init() {
 case $1 in
 awesome)
 	__gnome_init
-	exec awesome
+	exec ssh-agent awesome
 	;;
 
 dwm)	
 	__gnome_init
-	exec dwm
+	exec ssh-agent dwm
 	;;
 
 gnome)
@@ -23,15 +23,15 @@ gnome)
 
 i3)	
 	__gnome_init
-	exec i3
+	exec ssh-agent i3
 	;;
 
 wmii)	
 	__gnome_init
-	exec wmii
+	exec ssh-agent wmii
 	;;
 *)
 	__gnome_init
-	exec wmii
+	exec ssh-agent wmii
 	;;
 esac
